@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Variables for the mainThrust & rotationThrust & reference to the Rigidbody.
+    // Variables for the mainThrust & rotationThrust & reference to the Rigidbody and Audiosource.
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float rotationThrust = 100f;
     Rigidbody rbody;
@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get the rigidbody component from the Gameobject.
+        // Get the rigidbody & audiosource component from the Gameobject.
         rbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour
     }
 
     // Declare methods for Thrust and Rotation. Get the input for the player and apply the Thrust/Rotation.
+    // if the spacebar is pressed the audioclip will play.
     void ProcessThrust()
     {
        if (Input.GetKey(KeyCode.Space))
