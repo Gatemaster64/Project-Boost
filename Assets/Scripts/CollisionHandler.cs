@@ -2,7 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
-{    // Script for detecting collisions using switches.
+   
+    
+{    
+   [SerializeField] float levelLoadDelay = 10f;
+
+
+    // Script for detecting collisions using switches.
     void OnCollisionEnter(Collision other)
     {
         switch (other.gameObject.tag)
@@ -12,18 +18,31 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case "Finish":
-                LoadNextLevel();
+
+                StartSuccessSequence();
                 break;
 
-            case "Fuel":
-                Debug.Log("You have picked up fuel");
-                break;
             default:
-                ReloadLevel();
+                StartCrashSequence();
                 break;
 
         }
     }
+
+    void StartCrashSequence()
+    {
+        GetComponent<Movement>().enabled = false;
+        Invoke ("ReloadLevel", levelLoadDelay);
+        
+
+    }
+
+    void StartSuccessSequence()
+    {
+        GetComponent<Movement>().enabled = false;
+        Invoke("LoadNextLevel", levelLoadDelay); 
+    }
+
 
     // Methods to reload the level & next level.
    
