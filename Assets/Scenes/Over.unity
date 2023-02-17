@@ -454,14 +454,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1108300738, guid: be78ca8191f86034aacd4bb7645f82b9, type: 3}
-      propertyPath: levelLoadDelay
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3274258683544914585, guid: be78ca8191f86034aacd4bb7645f82b9, type: 3}
-      propertyPath: levelLoadDelay
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3940817097173015681, guid: be78ca8191f86034aacd4bb7645f82b9, type: 3}
       propertyPath: m_Name
       value: Rocket
@@ -510,8 +502,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3274258683544914585, guid: be78ca8191f86034aacd4bb7645f82b9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be78ca8191f86034aacd4bb7645f82b9, type: 3}
 --- !u!1001 &5974503535663943024
 PrefabInstance:

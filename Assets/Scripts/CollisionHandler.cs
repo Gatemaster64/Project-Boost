@@ -2,11 +2,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
-   
-    
-{    
-   [SerializeField] float levelLoadDelay = 10f;
 
+
+// PARAMETERS - for tuning, typically set in the editor.
+// CACHE - e.g. references for readability or speed.
+// STATE - private instance (member) variables.
+
+{
+   [SerializeField] float levelLoadDelay = 10f;
+   [SerializeField] AudioClip crash;
+   [SerializeField] AudioClip success;
+
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Script for detecting collisions using switches.
     void OnCollisionEnter(Collision other)
@@ -31,16 +43,16 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
+        audioSource.PlayOneShot(crash);
         GetComponent<Movement>().enabled = false;
         Invoke ("ReloadLevel", levelLoadDelay);
-        
-
     }
 
     void StartSuccessSequence()
     {
+        audioSource.PlayOneShot(success);
         GetComponent<Movement>().enabled = false;
-        Invoke("LoadNextLevel", levelLoadDelay); 
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
 
