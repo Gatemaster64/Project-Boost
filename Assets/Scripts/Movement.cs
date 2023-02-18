@@ -13,11 +13,16 @@ public class Movement : MonoBehaviour
     // Variables for the mainThrust & rotationThrust & reference to the Rigidbody and Audiosource.
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float rotationThrust = 100f;
+   
     [SerializeField] AudioClip mainEngine;
-    
+    [SerializeField] ParticleSystem mainBooster;
+    [SerializeField] ParticleSystem leftBooster;
+    [SerializeField] ParticleSystem rightBooster;
+
 
     Rigidbody rbody;
     AudioSource audioSource;
+    ParticleSystem parSystem;
     
 
     // Start is called before the first frame update
@@ -26,6 +31,7 @@ public class Movement : MonoBehaviour
         // Get the rigidbody & audiosource component from the Gameobject.
         rbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        parSystem= GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -43,6 +49,7 @@ public class Movement : MonoBehaviour
        if (Input.GetKey(KeyCode.Space))
         {
             rbody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+            mainBooster.Play();
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(mainEngine);
@@ -61,11 +68,13 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotationThrust);
+            leftBooster.Play();
         }
 
         else if (Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotationThrust);
+            rightBooster.Play();
         }
     }
 
