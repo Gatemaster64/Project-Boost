@@ -15,9 +15,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationThrust = 100f;
    
     [SerializeField] AudioClip mainEngine;
-    [SerializeField] ParticleSystem mainBooster;
-    [SerializeField] ParticleSystem leftBooster;
-    [SerializeField] ParticleSystem rightBooster;
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem leftThrusterParticles;
+    [SerializeField] ParticleSystem rightThrusterParticles;
 
 
     Rigidbody rbody;
@@ -44,21 +44,28 @@ public class Movement : MonoBehaviour
 
     // Declare methods for Thrust and Rotation. Get the input for the player and apply the Thrust/Rotation.
     // if the spacebar is pressed the audioclip will play.
+    // Particles play when pressing space or A/D.
     void ProcessThrust()
     {
        if (Input.GetKey(KeyCode.Space))
         {
             rbody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-            mainBooster.Play();
+            
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(mainEngine);
             }
-            
+            if(!mainEngineParticles.isPlaying)
+            {
+                mainEngineParticles.Play();
+            }
+           
+
         }
         else
         {
             audioSource.Stop();
+            mainEngineParticles.Stop();
         }
 
     }
@@ -68,13 +75,28 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotationThrust);
-            leftBooster.Play();
+            if (!rightThrusterParticles.isPlaying)
+            {
+                rightThrusterParticles.Play();
+            }
         }
+
+        
 
         else if (Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotationThrust);
-            rightBooster.Play();
+            if(!leftThrusterParticles.isPlaying)
+            {
+                leftThrusterParticles.Play();
+            }
+           
+        }
+        else
+        {
+            rightThrusterParticles.Stop();
+            leftThrusterParticles.Stop();
+            
         }
     }
 
