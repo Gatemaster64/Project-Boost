@@ -13,7 +13,13 @@ public class CollisionHandler : MonoBehaviour
    [SerializeField] AudioClip crash;
    [SerializeField] AudioClip success;
 
+   [SerializeField] ParticleSystem successParticles;
+   [SerializeField] ParticleSystem crashParticles;
+
+
+
     AudioSource audioSource;
+    ParticleSystem parSystem;
 
     // state between collisions.
     // If isTransitioning = true - Don't do the rest of the code block.
@@ -22,6 +28,7 @@ public class CollisionHandler : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        parSystem = GetComponent<ParticleSystem>();
     }
 
     // Script for detecting collisions using switches.
