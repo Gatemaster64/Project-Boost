@@ -17,9 +17,8 @@ public class CollisionHandler : MonoBehaviour
    [SerializeField] ParticleSystem crashParticles;
 
 
-
-    AudioSource audioSource;
     ParticleSystem parSystem;
+    AudioSource audioSource;
 
     // state between collisions.
     // If isTransitioning = true - Don't do the rest of the code block.
@@ -60,6 +59,7 @@ public class CollisionHandler : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
+        crashParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke ("ReloadLevel", levelLoadDelay);
     }
@@ -69,6 +69,7 @@ public class CollisionHandler : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(success);
+        successParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
     }
