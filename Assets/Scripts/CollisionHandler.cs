@@ -19,22 +19,45 @@ public class CollisionHandler : MonoBehaviour
 
     ParticleSystem parSystem;
     AudioSource audioSource;
+    BoxCollider boxCollider;
 
     // state between collisions.
     // If isTransitioning = true - Don't do the rest of the code block.
     bool isTransitioning = false;
+    bool collisionDisabled = false;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         parSystem = GetComponent<ParticleSystem>();
+        boxCollider = GetComponent<BoxCollider>();
     }
+
+    void Update()
+    {
+        RespondToDebugKeys();
+    }
+    
+    void RespondToDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled; // Toggle collision
+        }
+    }
+
+
 
     // Script for detecting collisions using switches.
     void OnCollisionEnter(Collision other)
     {
-
-        if(isTransitioning) { return; }
+        // if isTransitioning = true or collision is disabled.  don't do anymore code and Return. 
+        if(isTransitioning || collisionDisabled) { return; }
 
         switch (other.gameObject.tag)
         {
@@ -76,8 +99,7 @@ public class CollisionHandler : MonoBehaviour
 
 
     // Methods to reload the level & next level.
-   
-     void ReloadLevel()
+    void ReloadLevel()
     {   //  Declaring a variable for the active scene, and loading the scene & Index.
         int currentSceneIndex = (SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(currentSceneIndex);
