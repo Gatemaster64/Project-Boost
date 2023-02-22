@@ -1533,7 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: 4, y: 0, z: 0}
-  movementFactor: 1
+  period: 2
 --- !u!4 &1357646661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6195779815978719832, guid: 54ed01e5ff8a5cf4fb5ccac8e37512cc, type: 3}
