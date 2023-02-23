@@ -21,8 +21,9 @@ public class Oscillator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()                              
     {
+        if (period <=  Mathf.Epsilon) { return; }     
         float cycles = Time.time / period; // continually growing over time
 
         
