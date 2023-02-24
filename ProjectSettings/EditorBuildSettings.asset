@@ -7,8 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Over.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: c31cce7e67556094da465c92e9ae4161
   - enabled: 1
     path: Assets/Scenes/Under.unity
     guid: 34589dd597d7682439d05f81c5c91d5e
+  - enabled: 1
+    path: Assets/Scenes/Fly Through.unity
+    guid: caa3b44357e99df4f9ef3339894de739
+  - enabled: 1
+    path: Assets/Scenes/Spheres.unity
+    guid: 9525fbfb0c437be4891e3ffaa1133229
   m_configObjects: {}
